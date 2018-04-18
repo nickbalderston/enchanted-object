@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hello-johnny-five</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+  </head>
+  <body>
+    <div class="container">
+
+      <h1 id="counter"></h1>
+                                    
+    </div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    
+    <script>
+      var socket = io();
+      var counter = document.getElementById("counter");
+      
+      var theButton = document.getElementById("theButton");
+
+      // receive message from server to display
+      socket.on('motionend', function(data){
+        counter.innerHTML = data +" items have been diverted from landfills";
+      })
+
+                  
+    </script>
+  </body>
+</html>
