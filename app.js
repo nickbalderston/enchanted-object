@@ -7,8 +7,11 @@ var io = require('socket.io')(http);
 const MongoClient = require('mongodb').MongoClient;
 var db;
 
+const Raspi = require('raspi-io');
 var five = require("johnny-five");
-var board = new five.Board();
+const board = new five.Board({
+  io: new Raspi()
+});
 var led, button, rgb, sensor;
 var buttonIsPressed = false;
 
@@ -49,13 +52,13 @@ MongoClient.connect('mongodb://nickcm:Shivers1@ds141889.mlab.com:41889/recycling
             console.log(results[0].counter);
           })
         
-          var motion = new five.Motion(7);
+          var motion = new five.Motion(P1-7);
         
           motion.on("calibrated", function() {
             console.log("calibrated");
           });
           
-          button = new five.Button(2);
+          button = new five.Button(P1-11);
             
           button.on("press", function() {
             console.log( "Button pressed" );
